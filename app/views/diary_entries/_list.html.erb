@@ -1,0 +1,38 @@
+<%# As we want to display a header for every day and again for every user,
+    we use three variables to keep track of the layout %>
+<% @day = nil %>
+<% @user_id = nil %>
+<% @table_is_open = false %>
+
+<%= form_tag({}) do -%>
+  <%= hidden_field_tag 'back_url', url_for(params) %>
+
+  <div class="autoscroll">
+    <% entries.each do |entry| -%>
+
+      <%= open_day(entry.spent_on) %>
+
+      <%= user_header(entry.user) %>
+
+      <tr class="time-entry <%= cycle("odd", "even") %>">
+        <%= raw @query.inline_columns.map {|column| "<td class=\"#{column.css_classes}\">#{diary_column_content(column, entry)}</td>"}.join %>
+        <td align="center">
+        <% if entry.editable_by?(User.current) -%>
+            <%= link_to image_tag('edit.png'), edit_diary_entry_path(entry, params),
+                                               :title => l(:button_edit) %>
+            <%= link_to image_tag('delete.png'), diary_entry_path(entry, params),
+                                                 :data => {:confirm => l(:text_are_you_sure)},
+                                                 :method => :delete,
+                                                 :title => l(:button_delete) %>
+        <% end -%>
+        </td>
+      </tr>
+      
+    <% end %>
+
+    <%= close_table %>
+
+    <%= close_day %>
+
+  </div>
+<% end -%>
