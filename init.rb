@@ -8,4 +8,7 @@ Redmine::Plugin.register :redmine_diary do
   
   requires_redmine :version_or_higher => '2.3.1'
 
+  menu :top_menu, :diary_entries, {controller: :diary_entries, action: :index},
+       :caption => :label_diary, :after => :home,
+       :if => Proc.new { User.current.allowed_to?(:view_time_entries, nil, global: true) }
 end
