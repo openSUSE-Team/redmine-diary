@@ -1,4 +1,5 @@
 class DiaryEntriesController < ApplicationController
+  unloadable
 
   rescue_from Query::StatementInvalid, :with => :query_statement_invalid
 
