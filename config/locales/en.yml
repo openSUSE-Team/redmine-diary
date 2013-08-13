@@ -1,3 +1,11 @@
 # English strings go here for Rails i18n
 en:
   label_diary: "Diary"
+
+  activerecord:
+    errors:
+      models:
+        time_entry:
+          attributes:
+            spent_on:
+              too_old: "Cannot be that much in the past"
