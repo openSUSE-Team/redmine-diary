@@ -8,4 +8,4 @@ en:
         time_entry:
           attributes:
             spent_on:
-              too_old: "Cannot be that much in the past"
+              too_old: "cannot be that much in the past"
