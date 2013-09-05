@@ -9,3 +9,6 @@ en:
           attributes:
             spent_on:
               too_old: "cannot be that much in the past"
+
+  diary:
+    default_project: "Default project"

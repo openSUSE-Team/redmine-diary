@@ -1,0 +1,9 @@
+<p>
+  <label for="settings_default_project_id"><%= l("diary.default_project") %></label>
+  <%-
+    projects = Project.active
+    selected = (Project.find(settings['default_project_id']) rescue nil)
+    options = content_tag(:option, "-", :value => "") + project_tree_options_for_select(projects, :selected => selected)
+  %>
+  <%= select_tag "settings[default_project_id]", options %>
+</p>

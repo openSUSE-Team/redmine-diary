@@ -20,7 +20,9 @@ class DiaryEntriesController < ApplicationController
     list
 
     # For the new entry form
-    @time_entry ||= TimeEntry.new(:user => User.current, :spent_on => User.current.today)
+    project_id = Setting.plugin_redmine_diary['default_project_id']
+    project = (Project.find(project_id) rescue nil)
+    @time_entry ||= TimeEntry.new(:user => User.current, :spent_on => User.current.today, :project => project)
     @time_entry.safe_attributes = params[:time_entry]
     @time_entry.hours ||= 0
   end
