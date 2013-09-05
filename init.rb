@@ -1,4 +1,5 @@
 require 'diary_time_entry_patch'
+require 'diary_issue_hook'
 
 Redmine::Plugin.register :redmine_diary do
   name 'Extended views for time tracker'
