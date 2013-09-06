@@ -8,7 +8,7 @@ Just copy it in the plugins directory and restart Redmine.
 
 ## Support
 
-Tested against Redmine 2.3.1 and Ruby 1.9.3. Should work with Ruby 1.8.7 either.
+Tested with Redmine 2.3.1 and 2.3.2 and both Ruby 1.9.3 and 1.8.7.
 
 ## License
 
