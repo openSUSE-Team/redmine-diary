@@ -4,6 +4,12 @@ class DiaryTest < ActiveSupport::TestCase
   fixtures  :projects, :enabled_modules,
             :users, :members, :member_roles, :roles, :groups_users
 
+  setup :set_threshold
+
+  def set_threshold
+    Setting.plugin_redmine_diary['days_threshold'] = 2
+  end
+
   def test_create_current
     entry = TimeEntry.new(:project => Project.find(1), :spent_on => Date.current,
                           :hours => 1, :user => User.find(3), :activity_id => 1)

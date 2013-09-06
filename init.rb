@@ -16,7 +16,8 @@ Redmine::Plugin.register :redmine_diary do
        :if => Proc.new { User.current.allowed_to?(:view_time_entries, nil, :global => true) }
 
   settings :partial => 'settings/redmine_diary_settings',
-           :default => { :default_project_id => nil }
+           :default => { 'default_project_id' => nil,
+                         'days_threshold' => nil }
 end
 
 Rails.configuration.to_prepare do

@@ -7,3 +7,8 @@
   %>
   <%= select_tag "settings[default_project_id]", options %>
 </p>
+<p>
+  <label for="settings_days_threshold"><%= l("diary.days_threshold") %></label>
+  <%= text_field_tag "settings[days_threshold]", settings['days_threshold'], :size => 3 %>
+</p>
+<p><%= l("diary.days_threshold_description") %></p>

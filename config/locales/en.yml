@@ -12,3 +12,5 @@ en:
 
   diary:
     default_project: "Default project"
+    days_threshold: "Days for blocking time entries"
+    days_threshold_description: "Prevents creation or modification of time entries with a date older than X days from the current date. Set the value to blank or 0 to disable this feature."
