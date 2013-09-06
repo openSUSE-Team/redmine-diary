@@ -19,7 +19,11 @@ directly from this view using the form at the top of the page.
 
 In addition, the plugin can be configured to prevent the creation, modification and
 deletion of old time entries, to encourage users to keep the time entries up to
-date, using them for logging the activity in a daily basis.
+date, using them for logging the activity in a daily basis. On the other hand,
+to reduce the number of time entries with blank comments and to speedup
+reporting, time entries created while updating an issue are filled with the
+content of the journal (comment) for that update (if the update is commented but
+the time entry is not).
 
 ## Support
 
