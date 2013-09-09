@@ -104,8 +104,8 @@ class DiaryEntriesController < ApplicationController
     params[:spent_on] = "w" if params[:spent_on].blank?
     # By default, show the four more relevant fields and custom fields
     if params[:c].blank?
-      params[:c] = %w(hours comments issue project)
-      params[:c] += TimeEntryCustomField.pluck(:id).map {|i| "cf_#{i}" }
+      params[:c] = %w(comments issue project hours)
+      params[:c] = TimeEntryCustomField.pluck(:id).map {|i| "cf_#{i}" } + params[:c]
     end
     @query = TimeEntryQuery.build_from_params(params, :name => '_')
     scope = TimeEntry.visible.where(@query.statement)
