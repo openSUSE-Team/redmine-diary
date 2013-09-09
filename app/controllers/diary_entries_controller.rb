@@ -74,6 +74,9 @@ class DiaryEntriesController < ApplicationController
 
   def update
     @time_entry.safe_attributes = params[:time_entry]
+    if (project_id = params[:time_entry][:project_id]).present?
+      @time_entry.project = Project.find(project_id)
+    end
 
     call_hook(:controller_timelog_edit_before_save, { :params => params, :time_entry => @time_entry })
 
@@ -130,7 +133,6 @@ class DiaryEntriesController < ApplicationController
       render_403
       return false
     end
-    @project = @time_entry.project
   rescue ActiveRecord::RecordNotFound
     render_404
   end

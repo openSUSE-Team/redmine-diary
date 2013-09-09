@@ -8,7 +8,7 @@
 
 <% if User.current.allowed_to?(:log_time, nil, :global => true) %>
   <%= labelled_form_for @time_entry, :url => diary_entries_path(params) do |f| %>
-    <%= render :partial => 'timelog/form', :locals => {:f => f} %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
     <%= submit_tag l(:button_create) %>
   <% end %>
 <% end %>
