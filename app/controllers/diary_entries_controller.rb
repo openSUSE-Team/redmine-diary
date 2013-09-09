@@ -20,9 +20,10 @@ class DiaryEntriesController < ApplicationController
     list
 
     # For the new entry form
-    project_id = Setting.plugin_redmine_diary['default_project_id']
+    project_id = params.delete(:entry_project_id) || Setting.plugin_redmine_diary['default_project_id']
     project = (Project.find(project_id) rescue nil)
-    @time_entry ||= TimeEntry.new(:user => User.current, :spent_on => User.current.today, :project => project)
+    @time_entry ||= TimeEntry.new(:user => User.current, :spent_on => User.current.today,
+                                  :project => project, :activity_id => params.delete(:entry_activity_id))
     @time_entry.safe_attributes = params[:time_entry]
     @time_entry.hours ||= 0
   end
@@ -40,7 +41,8 @@ class DiaryEntriesController < ApplicationController
       respond_to do |format|
         format.html {
           flash[:notice] = l(:notice_successful_create)
-          redirect_to diary_entries_path(params)
+          # Adding two additional params, because using params[:time_entry] seems to cause some problems
+          redirect_to diary_entries_path(params.merge(:entry_project_id => @project.id, :entry_activity_id => @time_entry.activity_id))
         }
       end
     else
