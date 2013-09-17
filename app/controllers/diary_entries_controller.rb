@@ -111,7 +111,7 @@ class DiaryEntriesController < ApplicationController
     end
     @query = TimeEntryQuery.build_from_params(params, :name => '_')
     scope = TimeEntry.visible.where(@query.statement)
-    @entries = scope.includes(:project, :activity, :user, {:issue => :tracker})
+    @entries = scope.includes(:project, :activity, :user, {:issue => :tracker}, {:custom_values => :custom_field})
     @entries = @entries.order("spent_on DESC, users.firstname, users.lastname, users.id")
   end
 
