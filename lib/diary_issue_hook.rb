@@ -7,10 +7,10 @@ class DiaryIssueHook < Redmine::Hook::Listener
     journal = context[:journal]
     time_entry = context[:time_entry]
 
-    # Instead of creating a time entry with a blank comment, copy the first 200
+    # Instead of creating a time entry with a blank comment, copy the first 255
     # characters from the journal (the issue comment)
     if time_entry && journal && time_entry.comments.blank?
-      comments = journal.notes[0..250]
+      comments = journal.notes[0..254]
       # To be honest, a new record is not expected at this point with the
       # current redmine implementation, but just in case...
       if time_entry.new_record?
