@@ -15,7 +15,17 @@
       <%= user_header(entry.user) %>
 
       <tr class="time-entry <%= cycle("odd", "even") %>">
-        <%= raw @query.inline_columns.map {|column| "<td class=\"#{column.css_classes}\">#{diary_column_content(column, entry)}</td>"}.join %>
+        <%
+          @query.inline_columns.each do |column|
+            content = diary_column_content(column, entry)
+            classes = column.css_classes
+            # Add css class for custom fields with format 'list'
+            classes << " #{content}" if column.respond_to?(:custom_field) &&
+                                        column.custom_field.respond_to?(:field_format) &&
+                                        column.custom_field.field_format == "list"
+        -%>
+          <td class="<%= classes %>"><%= content %></td>
+        <% end -%>
         <td align="center">
         <% if entry.editable_by?(User.current) -%>
             <%= link_to image_tag('edit.png'), edit_diary_entry_path(entry, params),
