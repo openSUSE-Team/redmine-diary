@@ -20,7 +20,7 @@
             content = diary_column_content(column, entry)
             classes = column.css_classes
             # Add css class for custom fields with format 'list'
-            classes << " #{content}" if column.respond_to?(:custom_field) &&
+            classes += " #{content}" if column.respond_to?(:custom_field) &&
                                         column.custom_field.respond_to?(:field_format) &&
                                         column.custom_field.field_format == "list"
         -%>
