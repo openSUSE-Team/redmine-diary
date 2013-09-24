@@ -22,14 +22,16 @@ class DiaryEntriesController < ApplicationController
     # For the new entry form
     project_id = params.delete(:entry_project_id) || Setting.plugin_redmine_diary['default_project_id']
     project = (Project.find(project_id) rescue nil)
-    @time_entry ||= TimeEntry.new(:user => User.current, :spent_on => User.current.today,
-                                  :project => project, :activity_id => params.delete(:entry_activity_id))
+    @time_entry ||= TimeEntry.new(:user => User.current, :project => project,
+                                  :activity_id => params.delete(:entry_activity_id))
     @time_entry.safe_attributes = params[:time_entry]
     @time_entry.hours ||= 0
   end
 
   def create
-    @time_entry ||= TimeEntry.new(:project => @project, :issue => @issue, :user => User.current, :spent_on => User.current.today)
+    spent_on = params[:time_entry].delete(:spent_on)
+    spent_on = User.current.today if spent_on.blank?
+    @time_entry ||= TimeEntry.new(:project => @project, :issue => @issue, :user => User.current, :spent_on => spent_on)
     @time_entry.safe_attributes = params[:time_entry]
 
     call_hook(:controller_timelog_edit_before_save, { :params => params, :time_entry => @time_entry })
