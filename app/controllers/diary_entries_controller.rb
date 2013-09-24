@@ -12,7 +12,7 @@ class DiaryEntriesController < ApplicationController
   helper :custom_fields
   include CustomFieldsHelper
 
-  before_filter :find_project_and_issue, :only => :create
+  before_filter :find_project_and_issue, :authorize_creation, :only => :create
   before_filter :find_time_entry, :only => [:destroy, :edit, :update]
 
   def index
@@ -139,5 +139,13 @@ class DiaryEntriesController < ApplicationController
     end
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def authorize_creation
+    if User.current.allowed_to?({:controller => "timelog", :action => "new"}, @project, :global => false)
+      true
+    else
+      render_403
+    end
   end
 end
