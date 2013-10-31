@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_diary do
   name 'Redmine diary'
   author 'Ancor Gonzalez Sosa'
   description 'Diary view for time entries plus some related goodies'
-  version '0.0.6'
+  version '0.0.7'
   url 'https://github.com/openSUSE-Team/redmine-diary'
   author_url 'https://github.com/ancorgs'
   
