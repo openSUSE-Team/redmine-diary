@@ -2,7 +2,7 @@
     we use three variables to keep track of the layout %>
 <% @day = nil %>
 <% @user_id = nil %>
-<% @table_is_open = false %>
+<% @user_is_open = false %>
 
 <%= form_tag({}) do -%>
   <%= hidden_field_tag 'back_url', url_for(params) %>
@@ -40,7 +40,7 @@
       
     <% end %>
 
-    <%= close_table %>
+    <%= close_user %>
 
     <%= close_day %>
 

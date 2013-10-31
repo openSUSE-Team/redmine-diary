@@ -4,5 +4,11 @@ div.diary-day {
 
 div.diary-day h3 {
   margin-top: 10px;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
+}
+
+table.list th.diary-user {
+  text-align: left;
+  font-size: 1.2em;
+  padding-left: 1em;
 }
