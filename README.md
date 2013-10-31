@@ -4,7 +4,7 @@ Redmine plugin to use time requests for reporting daily activity
 
 ## Install
 
-Just copy place it at `plugins/redmine_diary` (yes, with underscore) 
+Just place it at `plugins/redmine_diary` (yes, with underscore) 
 and restart Redmine.
 
 ## Usage
