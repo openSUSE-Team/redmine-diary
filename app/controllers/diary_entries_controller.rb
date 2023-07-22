@@ -12,8 +12,8 @@ class DiaryEntriesController < ApplicationController
   helper :custom_fields
   include CustomFieldsHelper
 
-  before_filter :find_project_and_issue, :authorize_creation, :only => :create
-  before_filter :find_time_entry, :only => [:destroy, :edit, :update]
+  before_action :find_project_and_issue, :authorize_creation, :only => :create
+  before_action :find_time_entry, :only => [:destroy, :edit, :update]
 
   def index
     # For the listing
